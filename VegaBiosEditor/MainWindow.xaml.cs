@@ -993,51 +993,63 @@ namespace VegaBiosEditor
                         }*/
 
                         tableROM.Items.Clear();
+                        var rBootupMsg = isChinese ? cnTexts["bootupMsg"] : enTexts["bootupMsg"];
+                        var rVendorId = isChinese ? cnTexts["vendorId"] : enTexts["vendorId"];
+                        var rDeviceId = isChinese ? cnTexts["deviceId"] : enTexts["deviceId"];
+                        var rSubId = isChinese ? cnTexts["subId"] : enTexts["subId"];
+                        var rSubVendorId = isChinese ? cnTexts["subVendorId"] : enTexts["subVendorId"];
+                        var rFirmwareSig = isChinese ? cnTexts["firmwareSig"] : enTexts["firmwareSig"];
+
                         tableROM.Items.Add(new
                         {
-                            NAME = "启动消息",
+                            NAME = rBootupMsg,
                             VALUE = "0x" + atom_rom_header.usBIOS_BootupMessageOffset.ToString("X")
                         });
                         tableROM.Items.Add(new
                         {
-                            NAME = "厂商ID",
+                            NAME = rVendorId,
                             VALUE = "0x" + atom_rom_header.usVendorID.ToString("X")
                         });
                         tableROM.Items.Add(new
                         {
-                            NAME = "设备ID",
+                            NAME = rDeviceId,
                             VALUE = "0x" + atom_rom_header.usDeviceID.ToString("X")
                         });
                         tableROM.Items.Add(new
                         {
-                            NAME = "子系统ID",
+                            NAME = rSubId,
                             VALUE = "0x" + atom_rom_header.usSubsystemID.ToString("X")
                         });
                         tableROM.Items.Add(new
                         {
-                            NAME = "子厂商ID",
+                            NAME = rSubVendorId,
                             VALUE = "0x" + atom_rom_header.usSubsystemVendorID.ToString("X")
                         });
                         tableROM.Items.Add(new
                         {
-                            NAME = "固件签名",
+                            NAME = rFirmwareSig,
                             VALUE = "0x" + atom_rom_header.uaFirmWareSignature.ToString("X")
                         });
 
                         tablePOWERPLAY.Items.Clear();
+                        var ppMaxGpu = isChinese ? cnTexts["maxGpuFreq"] : enTexts["maxGpuFreq"];
+                        var ppMaxMem = isChinese ? cnTexts["maxMemFreq"] : enTexts["maxMemFreq"];
+                        var ppPowerLimit = isChinese ? cnTexts["powerLimit"] : enTexts["powerLimit"];
+                        var ppUlvVolt = isChinese ? cnTexts["ulvVolt"] : enTexts["ulvVolt"];
+
                         tablePOWERPLAY.Items.Add(new
                         {
-                            NAME = "最大GPU频率 (MHz)",
+                            NAME = ppMaxGpu,
                             VALUE = atom_vega10_powerplay_table.ulMaxODEngineClock / 100
                         });
                         tablePOWERPLAY.Items.Add(new
                         {
-                            NAME = "最大显存频率 (MHz)",
+                            NAME = ppMaxMem,
                             VALUE = atom_vega10_powerplay_table.ulMaxODMemoryClock / 100
                         });
                         tablePOWERPLAY.Items.Add(new
                         {
-                            NAME = "功耗控制限制 (%)",
+                            NAME = ppPowerLimit,
                             VALUE = atom_vega10_powerplay_table.usPowerControlLimit
                         });
                         tablePOWERPLAY.Items.Add(new
