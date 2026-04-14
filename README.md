@@ -2,7 +2,7 @@
 
 ## English
 
-Vega10 graphics card BIOS editing tool.
+Vega10 graphics card BIOS editing tool. Designed for AMD MI25 and MI50 GPUs.
 
 Original code was forked from an unknown developer. This version adds:
 - Chinese/English language switching (toggle in top-right corner)
@@ -44,7 +44,7 @@ Toggle between English/Chinese using the dropdown in the top-right corner.
 
 ## 中文
 
-Vega10显卡BIOS调整工具。
+Vega10显卡BIOS调整工具。专为AMD MI25和MI50显卡设计。
 
 原代码忘了是从哪个大神那克隆的，此版本增加：
 - 中英语言切换（右上角下拉框）
