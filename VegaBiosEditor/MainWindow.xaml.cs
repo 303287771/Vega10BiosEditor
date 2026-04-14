@@ -779,6 +779,9 @@ namespace VegaBiosEditor
             enTexts["fanParams"] = "Fan Parameters";
             enTexts["fanMinRpm"] = "Fan Min RPM";
             enTexts["fanMaxRpm"] = "Fan Max RPM";
+            enTexts["vRamSize"] = "Size (MB)";
+            enTexts["vRamDensity"] = "Density";
+            enTexts["vRamType"] = "Type";
 
             cnTexts["title"] = "Vega显卡BIOS编辑器";
             cnTexts["open"] = "打开";
@@ -837,6 +840,9 @@ namespace VegaBiosEditor
             cnTexts["fanParams"] = "风扇参数";
             cnTexts["fanMinRpm"] = "最小RPM";
             cnTexts["fanMaxRpm"] = "最大RPM";
+            cnTexts["vRamSize"] = "大小 (MB)";
+            cnTexts["vRamDensity"] = "密度";
+            cnTexts["vRamType"] = "类型";
         }
 
         private void cmbLanguage_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -852,6 +858,11 @@ namespace VegaBiosEditor
                 isChinese = true;
             }
             updateLanguage();
+
+            if (buffer != null && buffer.Length > 0)
+            {
+                MessageBox.Show("请重新打开BIOS文件以刷新显示", "提示", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
         }
 
         private void updateLanguage()
@@ -1054,173 +1065,189 @@ namespace VegaBiosEditor
                         });
                         tablePOWERPLAY.Items.Add(new
                         {
-                            NAME = "ULV电压偏移 (mV)",
+                            NAME = ppUlvVolt,
                             VALUE = atom_vega10_powerplay_table.usUlvVoltageOffset
                         });
 
                         tablePOWERTUNE.Items.Clear();
+                        var ptSocketPower = isChinese ? cnTexts["socketPower"] : enTexts["socketPower"];
+                        var ptBatteryPower = isChinese ? cnTexts["batteryPower"] : enTexts["batteryPower"];
+                        var ptSmallPower = isChinese ? cnTexts["smallPower"] : enTexts["smallPower"];
+                        var ptEdcLimit = isChinese ? cnTexts["edcLimit"] : enTexts["edcLimit"];
+                        var ptTdc = isChinese ? cnTexts["tdc"] : enTexts["tdc"];
+                        var ptTempLimit = isChinese ? cnTexts["tempLimit"] : enTexts["tempLimit"];
+                        var ptShutdownTemp = isChinese ? cnTexts["shutdownTemp"] : enTexts["shutdownTemp"];
+                        var ptHotspotTemp = isChinese ? cnTexts["hotspotTemp"] : enTexts["hotspotTemp"];
+                        var ptLiquid1Temp = isChinese ? cnTexts["liquid1Temp"] : enTexts["liquid1Temp"];
+                        var ptLiquid2Temp = isChinese ? cnTexts["liquid2Temp"] : enTexts["liquid2Temp"];
+                        var ptHbmTemp = isChinese ? cnTexts["hbmTemp"] : enTexts["hbmTemp"];
+                        var ptVrSocTemp = isChinese ? cnTexts["vrSocTemp"] : enTexts["vrSocTemp"];
+                        var ptVrMemTemp = isChinese ? cnTexts["vrMemTemp"] : enTexts["vrMemTemp"];
+                        var ptPlxTemp = isChinese ? cnTexts["plxTemp"] : enTexts["plxTemp"];
+
                         tablePOWERTUNE.Items.Add(new
                         {
-                            NAME = "插槽功率 (W)",
+                            NAME = ptSocketPower,
                             VALUE = atom_vega10_powertune_table.usSocketPowerLimit
                         });
                         tablePOWERTUNE.Items.Add(new
                         {
-                            NAME = "电池功率 (W)",
+                            NAME = ptBatteryPower,
                             VALUE = atom_vega10_powertune_table.usBatteryPowerLimit
                         });
                         tablePOWERTUNE.Items.Add(new
                         {
-                            NAME = "小功率限制 (W)",
+                            NAME = ptSmallPower,
                             VALUE = atom_vega10_powertune_table.usSmallPowerLimit
                         });
                         tablePOWERTUNE.Items.Add(new
                         {
-                            NAME = "EDC模块限制",
+                            NAME = ptEdcLimit,
                             VALUE = atom_vega10_powertune_table.usEdcLimit
                         });
                         tablePOWERTUNE.Items.Add(new
                         {
-                            NAME = "TDC (A)",
+                            NAME = ptTdc,
                             VALUE = atom_vega10_powertune_table.usTdcLimit
                         });
                         tablePOWERTUNE.Items.Add(new
                         {
-                            NAME = "温度限制 (°C)",
+                            NAME = ptTempLimit,
                             VALUE = atom_vega10_powertune_table.usTemperatureLimitTedge
                         });
                         tablePOWERTUNE.Items.Add(new
                         {
-                            NAME = "关机温度 (°C)",
+                            NAME = ptShutdownTemp,
                             VALUE = atom_vega10_powertune_table.usSoftwareShutdownTemp
                         });
                         tablePOWERTUNE.Items.Add(new
                         {
-                            NAME = "热点温度 (°C)",
+                            NAME = ptHotspotTemp,
                             VALUE = atom_vega10_powertune_table.usTemperatureLimitHotSpot
                         });
                         tablePOWERTUNE.Items.Add(new
                         {
-                            NAME = "液体1温度 (°C)",
+                            NAME = ptLiquid1Temp,
                             VALUE = atom_vega10_powertune_table.usTemperatureLimitLiquid1
                         });
                         tablePOWERTUNE.Items.Add(new
                         {
-                            NAME = "液体2温度 (°C)",
+                            NAME = ptLiquid2Temp,
                             VALUE = atom_vega10_powertune_table.usTemperatureLimitLiquid2
                         });
                         tablePOWERTUNE.Items.Add(new
                         {
-                            NAME = "HBM温度 (°C)",
+                            NAME = ptHbmTemp,
                             VALUE = atom_vega10_powertune_table.usTemperatureLimitHBM
                         });
                         tablePOWERTUNE.Items.Add(new
                         {
-                            NAME = "VR Soc温度 (°C)",
+                            NAME = ptVrSocTemp,
                             VALUE = atom_vega10_powertune_table.usTemperatureLimitVrSoc
                         });
                         tablePOWERTUNE.Items.Add(new
                         {
-                            NAME = "VR Mem温度 (°C)",
+                            NAME = ptVrMemTemp,
                             VALUE = atom_vega10_powertune_table.usTemperatureLimitVrMem
                         });
                         tablePOWERTUNE.Items.Add(new
                         {
-                            NAME = "PLX温度 (°C)",
+                            NAME = ptPlxTemp,
                             VALUE = atom_vega10_powertune_table.usTemperatureLimitPlx
                         });
 
 
                         tableFAN.Items.Clear();
+                        var fSensitivity = isChinese ? cnTexts["sensitivity"] : enTexts["sensitivity"];
+                        var fTargetTemp = isChinese ? cnTexts["targetTemp"] : enTexts["targetTemp"];
+                        var fThrottleRpm = isChinese ? cnTexts["throttleRpm"] : enTexts["throttleRpm"];
+                        var fTargetGfx = isChinese ? cnTexts["targetGfxClk"] : enTexts["targetGfxClk"];
+                        var fFanGainEdge = isChinese ? cnTexts["fanGainEdge"] : enTexts["fanGainEdge"];
+                        var fFanGainHotspot = isChinese ? cnTexts["fanGainHotspot"] : enTexts["fanGainHotspot"];
+                        var fFanGainLiquid = isChinese ? cnTexts["fanGainLiquid"] : enTexts["fanGainLiquid"];
+                        var fFanGainVrVddc = isChinese ? cnTexts["fanGainVrVddc"] : enTexts["fanGainVrVddc"];
+                        var fFanGainVrMvdd = isChinese ? cnTexts["fanGainVrMvdd"] : enTexts["fanGainVrMvdd"];
+                        var fFanGainPlx = isChinese ? cnTexts["fanGainPlx"] : enTexts["fanGainPlx"];
+                        var fFanGainHbm = isChinese ? cnTexts["fanGainHbm"] : enTexts["fanGainHbm"];
+                        var fAcousticLimit = isChinese ? cnTexts["acousticLimit"] : enTexts["acousticLimit"];
+                        var fFanParams = isChinese ? cnTexts["fanParams"] : enTexts["fanParams"];
+                        var fFanMinRpm = isChinese ? cnTexts["fanMinRpm"] : enTexts["fanMinRpm"];
+                        var fFanMaxRpm = isChinese ? cnTexts["fanMaxRpm"] : enTexts["fanMaxRpm"];
+
                         tableFAN.Items.Add(new
                         {
-                            NAME = "灵敏度",
+                            NAME = fSensitivity,
                             VALUE = atom_vega10_fan_table.usFanOutputSensitivity
                         });
                         tableFAN.Items.Add(new
                         {
-                            NAME = "目标温度 (°C)",
+                            NAME = fTargetTemp,
                             VALUE = atom_vega10_fan_table.usTargetTemperature
                         });
 
                         tableFAN.Items.Add(new
                         {
-                            NAME = "节流RPM",
+                            NAME = fThrottleRpm,
                             VALUE = atom_vega10_fan_table.usThrottlingRPM
                         });
                         tableFAN.Items.Add(new
                         {
-                            NAME = "目标温度 (°C)",
-                            VALUE = atom_vega10_fan_table.usTargetTemperature
-                        });
-                        tableFAN.Items.Add(new
-                        {
-                            NAME = "目标Gfx频率",
+                            NAME = fTargetGfx,
                             VALUE = atom_vega10_fan_table.usTargetGfxClk
                         });
                         tableFAN.Items.Add(new
                         {
-                            NAME = "风扇增益: 边缘",
+                            NAME = fFanGainEdge,
                             VALUE = atom_vega10_fan_table.usFanGainEdge
                         });
                         tableFAN.Items.Add(new
                         {
-                            NAME = "风扇增益: 热点",
+                            NAME = fFanGainHotspot,
                             VALUE = atom_vega10_fan_table.usFanGainHotspot
                         });
                         tableFAN.Items.Add(new
                         {
-                            NAME = "风扇增益: 液体",
+                            NAME = fFanGainLiquid,
                             VALUE = atom_vega10_fan_table.usFanGainLiquid
                         });
                         tableFAN.Items.Add(new
                         {
-                            NAME = "风扇增益: VrVddc",
+                            NAME = fFanGainVrVddc,
                             VALUE = atom_vega10_fan_table.usFanGainVrVddc
                         });
                         tableFAN.Items.Add(new
                         {
-                            NAME = "风扇增益: VrMvdd",
+                            NAME = fFanGainVrMvdd,
                             VALUE = atom_vega10_fan_table.usFanGainVrMvdd
                         });
                         tableFAN.Items.Add(new
                         {
-                            NAME = "风扇增益: Plx",
+                            NAME = fFanGainPlx,
                             VALUE = atom_vega10_fan_table.usFanGainPlx
                         });
                         tableFAN.Items.Add(new
                         {
-                            NAME = "风扇增益: HBM",
+                            NAME = fFanGainHbm,
                             VALUE = atom_vega10_fan_table.usFanGainHbm
                         });
                         tableFAN.Items.Add(new
                         {
-                            NAME = "声学限制 (MHz)",
+                            NAME = fAcousticLimit,
                             VALUE = atom_vega10_fan_table.usFanAcousticLimitRpm
-                        });/*
-                        tableFAN.Items.Add(new
-                        {
-                            NAME = "Fan Stop Temperature",
-                            VALUE = atom_vega10_fan_table.usFanStopTemperature
                         });
                         tableFAN.Items.Add(new
                         {
-                            NAME = "Fan Start Temperature",
-                            VALUE = atom_vega10_fan_table.usFanStartTemperature 
-                        });*/
-                        tableFAN.Items.Add(new
-                        {
-                            NAME = "风扇参数",
+                            NAME = fFanParams,
                             VALUE = atom_vega10_fan_table.ucFanParameters
                         });
                         tableFAN.Items.Add(new
                         {
-                            NAME = "最小RPM",
+                            NAME = fFanMinRpm,
                             VALUE = atom_vega10_fan_table.ucFanMinRPM * 100
                         });
                         tableFAN.Items.Add(new
                         {
-                            NAME = "最大RPM",
+                            NAME = fFanMaxRpm,
                             VALUE = atom_vega10_fan_table.ucFanMaxRPM * 100
                         });
 
@@ -1856,31 +1883,36 @@ namespace VegaBiosEditor
 
         private void listVRAM_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            updateVRAM_entries();
+updateVRAM_entries();
             tableVRAM.Items.Clear();
             if (listVRAM.SelectedIndex >= 0 && listVRAM.SelectedIndex < listVRAM.Items.Count)
             {
                 atom_vram_index = listVRAM.SelectedIndex;
-                        tableVRAM.Items.Add(new
-                        {
-                            NAME = "厂商ID",
-                            VALUE = "0x" + atom_vram_entries[atom_vram_index].ucMemoryVenderID.ToString("X")
-                        });
-                        tableVRAM.Items.Add(new
-                        {
-                            NAME = "大小 (MB)",
-                            VALUE = atom_vram_entries[atom_vram_index].usMemorySize
-                        });
-                        tableVRAM.Items.Add(new
-                        {
-                            NAME = "密度",
-                            VALUE = "0x" + atom_vram_entries[atom_vram_index].ucDensity.ToString("X")
-                        });
-                        tableVRAM.Items.Add(new
-                        {
-                            NAME = "类型",
-                            VALUE = "0x" + atom_vram_entries[atom_vram_index].ucMemoryType.ToString("X")
-                        });
+                var vVendorId = isChinese ? cnTexts["vendorId"] : enTexts["vendorId"];
+                var vSize = isChinese ? cnTexts["vRamSize"] : enTexts["vRamSize"];
+                var vDensity = isChinese ? cnTexts["vRamDensity"] : enTexts["vRamDensity"];
+                var vType = isChinese ? cnTexts["vRamType"] : enTexts["vRamType"];
+
+                tableVRAM.Items.Add(new
+                {
+                    NAME = vVendorId,
+                    VALUE = "0x" + atom_vram_entries[atom_vram_index].ucMemoryVenderID.ToString("X")
+                });
+                tableVRAM.Items.Add(new
+                {
+                    NAME = vSize,
+                    VALUE = atom_vram_entries[atom_vram_index].usMemorySize
+                });
+                tableVRAM.Items.Add(new
+                {
+                    NAME = vDensity,
+                    VALUE = "0x" + atom_vram_entries[atom_vram_index].ucDensity.ToString("X")
+                });
+                tableVRAM.Items.Add(new
+                {
+                    NAME = vType,
+                    VALUE = "0x" + atom_vram_entries[atom_vram_index].ucMemoryType.ToString("X")
+                });
             }
         }
 
@@ -1926,7 +1958,7 @@ namespace VegaBiosEditor
         {
             string reg = "Windows Registry Editor Version 5.00\n\n";
 
-            string gpuKey = @"SYSTEM\\CurrentControlSet\\Control\\Class\\{4d36e968-e325-11ce-bfc1-08002be10318}\\0000";
+            string gpuKey = @"SYSTEM\\CurrentControlSet\\Control\\Class\\{4d36e968-e325-11ce-bfc1-08002be10318}\\0003";
 
             reg += "[HKEY_LOCAL_MACHINE\\" + gpuKey + "]\n";
 
