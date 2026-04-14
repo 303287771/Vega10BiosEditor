@@ -1943,6 +1943,10 @@ namespace VegaBiosEditor
             UInt16 tempLimit = atom_vega10_powertune_table.usTemperatureLimitTedge;
             reg += string.Format("\"PP_TempLimit\"=dword:{0:X8}\n", tempLimit);
 
+            UInt16 hotspotTemp = atom_vega10_powertune_table.usTemperatureLimitHotSpot;
+            reg += string.Format("\"PP_TempLimitHotSpot\"=dword:{0:X8}\n", hotspotTemp);
+            reg += string.Format("\"KMD_TempLimitHotSpot\"=dword:{0:X8}\n", hotspotTemp);
+
             UInt16 fanMinRpm = (UInt16)(atom_vega10_fan_table.ucFanMinRPM * 100);
             UInt16 fanMaxRpm = (UInt16)(atom_vega10_fan_table.ucFanMaxRPM * 100);
             reg += string.Format("\"KMD_MinSclkFrequency\"=dword:{0:X8}\n", 30000);
@@ -1971,6 +1975,7 @@ namespace VegaBiosEditor
 
             reg += "\n[HKEY_LOCAL_MACHINE\\" + gpuKey + "\\DAL2_THERMAL_LIMIT_CONFIG_DATA_0_0]\n";
             reg += string.Format("\"_PP_TempLimit\"=dword:{0:X8}\n", tempLimit * 1000);
+            reg += string.Format("\"_PP_TempLimitHotSpot\"=dword:{0:X8}\n", hotspotTemp * 1000);
 
             return reg;
         }
