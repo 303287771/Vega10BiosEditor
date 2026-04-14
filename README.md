@@ -9,11 +9,34 @@ Original code was forked from an unknown developer. This version adds:
 - Export registry file function - no need to flash BIOS, works like More Power Tool
 - Fixed bugs in the original code
 
-**Usage:**
-1. Open BIOS file (.rom)
-2. Modify parameters (e.g., Power Control Limit, GPU/Memory clock)
-3. Save modified BIOS or export registry file
-4. For registry: double-click to import, no flashing required
+### Environment Requirements
+
+- **Operating System:** Windows 10/11
+- **.NET Framework:** 4.7.1 or higher (usually pre-installed on Windows 10/11)
+- **Graphics Card:** AMD Vega 10 series (Vega 56, Vega 64, etc.)
+
+### How to Use
+
+1. **Download:**
+   - Go to [Releases](https://github.com/303287771/Vega10BiosEditor/releases) or download from `VegaBiosEditor/bin/Debug/` folder
+   - Download `VegaBiosEditor.exe` and `VegaBiosEditor.exe.config`
+
+2. **Run:** Double-click `VegaBiosEditor.exe` to start
+
+3. **Edit BIOS:**
+   - Click "OPEN" to load your BIOS file (.rom)
+   - Modify parameters (Power Control Limit, GPU/Memory clock, etc.)
+   - Click "SAVE" to save modified BIOS file
+
+4. **Export Registry (No Flashing):**
+   - After modifying parameters, click "Export Registry" button
+   - Save as .reg file
+   - Double-click to import - no BIOS flashing required!
+   - Restart computer or reload AMD driver to take effect
+
+### Language Switch
+
+Toggle between English/Chinese using the dropdown in the top-right corner.
 
 **Note:** Use at your own risk. I'm not responsible for any damage.
 
@@ -28,10 +51,33 @@ Vega10显卡BIOS调整工具。
 - 导出注册表文件功能，无需刷BIOS，像More Power Tool软件那样
 - 修复了原代码中的bug
 
-**使用方法：**
-1. 打开BIOS文件（.rom）
-2. 修改参数（如功耗控制限制、GPU/显存频率）
-3. 保存修改后的BIOS或导出注册表文件
-4. 导出注册表：双击导入，无需刷BIOS
+### 环境依赖
+
+- **操作系统：** Windows 10/11
+- **.NET Framework：** 4.7.1 或更高版本（Windows 10/11通常已预装）
+- **显卡：** AMD Vega 10系列（Vega 56、Vega 64等）
+
+### 使用方法
+
+1. **下载：**
+   - 前往 [Releases](https://github.com/303287771/Vega10BiosEditor/releases) 或从 `VegaBiosEditor/bin/Debug/` 文件夹下载
+   - 下载 `VegaBiosEditor.exe` 和 `VegaBiosEditor.exe.config`
+
+2. **运行：** 双击 `VegaBiosEditor.exe` 启动
+
+3. **修改BIOS：**
+   - 点击"OPEN"打开BIOS文件（.rom）
+   - 修改参数（功耗控制限制、GPU/显存频率等）
+   - 点击"SAVE"保存修改后的BIOS文件
+
+4. **导出注册表（无需刷BIOS）：**
+   - 修改参数后，点击"导出注册表"按钮
+   - 保存为.reg文件
+   - 双击导入 - 无需刷BIOS！
+   - 重启电脑或重载AMD驱动即可生效
+
+### 语言切换
+
+点击右上角语言选择框切换中英文。
 
 **注意：** 使用需谨慎，出现问题本人不承担责任。
